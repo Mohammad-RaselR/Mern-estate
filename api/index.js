@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGO).then(()=>{
 const app=  express();
 app.use(express.json()); 
 app.get('/', (req, res)=>{
-    res.send("k world"); 
+    res.send("h"); 
 })
 
 app.listen(3000, ()=>{
