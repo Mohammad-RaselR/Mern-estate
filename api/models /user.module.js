@@ -15,6 +15,10 @@ const userSchema= new mongoose.Schema({
         type: String,
         required: true,
         
+    },
+    avata:{
+        type: String,
+        default: "https://www.seblod.com/images/medias/62057/_thumb2/2205256774854474505_medium.jpg"
     }
 }, {timestamps: true}); 
 
