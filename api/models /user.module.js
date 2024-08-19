@@ -16,7 +16,7 @@ const userSchema= new mongoose.Schema({
         required: true,
         
     },
-    avata:{
+    avatar:{
         type: String,
         default: "https://www.seblod.com/images/medias/62057/_thumb2/2205256774854474505_medium.jpg"
     }
