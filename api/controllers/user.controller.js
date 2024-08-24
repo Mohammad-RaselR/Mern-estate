@@ -7,12 +7,21 @@ export const test= (req, res)=>{
     })
 }
 export const updateUser=async (req, res, next)=>{
+    const { username,email } = req.body;
+    const existingUser = await User.findOne({ username });
     if (req.user.id !== req.params.id)
         return next(errorHandler(401, 'You can only update your own account!'));
 
-
+    if(existingUser && existingUser._id!=req.params.id){
+        return next(errorHandler(409, 'Username already exists!'));
+    }
+    const existingEmail = await User.findOne({ email });
+    if(existingEmail && existingEmail._id!=req.params.id){
+        return next(errorHandler(409, 'Email already exists!'));
+    }
 
     try{
+        
         if(req.body.password){
             req.body.password= bcryptjs.hashSync(req.body.password, 10 )}
 
