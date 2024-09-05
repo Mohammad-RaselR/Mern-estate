@@ -1,4 +1,4 @@
-import User from "../models /user.module.js"
+import User from "../models/user.module.js"
 import { errorHandler } from "../utils/error.js"
 // import {clearCookies} from "cookie-parser"
 import bcryptjs from 'bcryptjs'
