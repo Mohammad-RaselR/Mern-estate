@@ -8,12 +8,15 @@ import { useNavigate } from "react-router-dom";
 
 export default function CreateListing() {
     const {currentUser}= useSelector((state)=> state.user); 
+    //file state for  image
     const [file, setFile]= useState([]); 
     const [imageError, setImageError]=useState(false); 
     const [error, setError]= useState(false); 
     console.log(error)
     const nevigate = useNavigate(); 
     const [loading, setLoading]= useState(false);  
+
+    //formData state for everything add in state 
     const [formData, setFormData]=useState({
         imageUrl:[],
         name: '', 

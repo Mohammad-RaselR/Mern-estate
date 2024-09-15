@@ -17,6 +17,9 @@ export default function Profile() {
   const [fileError, setFileError]= useState(false);
   const [formData, setFormData]= useState({});
   const [updateSuccess, setUpdateSuccess]=useState(false);
+  const [showListingError, setShowListingError]= useState(false); 
+  const [userListing, setUserListing]= useState([]); 
+  
   const dispatch= useDispatch(); 
   console.log(file); 
 
@@ -117,6 +120,15 @@ export default function Profile() {
       dispatch(signOutUserFailure(error.message));
     }
   }
+
+  const showListing= async()=>{
+    try{
+
+    }
+    catch(e){
+      setShowListingError(true); 
+    }
+  }
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl my-7 font-semibold text-center">Profile</h1>
@@ -179,6 +191,8 @@ export default function Profile() {
       <p className="text-green-700 mt-5">
         {updateSuccess ? "User is Updated Successfully!" : ""}
       </p>
+      <button onClick={showListing} className="text-green-700  w-full">Show Listing</button>
+      <p className="text-red-700 mt-5">{showListingError? 'Error showing Listings ': ""}</p>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Listing from "../models/listing.module.js"
 import User from "../models/user.module.js"
 import { errorHandler } from "../utils/error.js"
 // import {clearCookies} from "cookie-parser"
@@ -56,4 +57,25 @@ export const deleteUser= async(req, res, next)=>{
     catch(error){
         next(error);
     }
+}
+export const getUserListing= async(req, res, next)=>{
+    if(req.user.id!==req.params.id){
+        return next(errorHandler(401, "You can only view your own Account")); 
+
+    }
+    else{
+
+    
+    try{
+       const listings= await Listing.find({userRef:req.params.id}); 
+       res.status(200).json(listings); 
+
+      
+    }
+    
+    catch(error){
+        next(error);
+    }
+}
+    
 }
