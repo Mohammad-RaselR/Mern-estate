@@ -51,3 +51,10 @@ export const updateListing= async (req, res, next) => {
     next(errorHandler(500, "Internal Server Error"));
 }
 }
+export const getListing= async (req, res, next) => {
+    const listing= await Listing.findById(req.params.id);
+    if(!listing){
+        return next(errorHandler(404, "Listing not found"));
+    }
+    return res.status(200).json(listing);
+}   
