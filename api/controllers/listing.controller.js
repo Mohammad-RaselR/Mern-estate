@@ -23,7 +23,7 @@ export const deleteListing= async (req, res, next) => {
     if(!listing){
         return next(errorHandler(404, "Listing not found"));
     }
-    if(req.user.id !== listing.userRef.toString()){
+    if(req.user.id !== listing.userRef){
         return next(errorHandler(401, "Unauthorized"));
     }
     try{
@@ -32,4 +32,22 @@ export const deleteListing= async (req, res, next) => {
     }catch(error){
         next(errorHandler(500, "Internal Server Error"));
     }
+}
+export const updateListing= async (req, res, next) => {
+    const listing= await Listing.findById(req.params.id);
+    if(!listing){
+        return next(errorHandler(404, "Listing not found"));
+    }
+    if(req.user.id !== listing.userRef){
+        return next(errorHandler(401, "Unauthorized"));
+    }
+    try{
+        const updatedListing= await Listing.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        
+         res.status(200).json(updatedListing);    
+
+
+}catch(error){
+    next(errorHandler(500, "Internal Server Error"));
+}
 }
